@@ -21,6 +21,7 @@ CREATE TABLE CUST (
     Age int
 ); 
 
+
 -- The UNIQUE constraint ensures that all values in a column are different.
 -- SYNTAX
 
@@ -30,7 +31,8 @@ CREATE TABLE CUST (
     FIRSTNAME VARCHAR(255)UNIQUE,
     AGE INT
     );
-    
+ 
+ 
 -- To create a UNIQUE constraint on the "ID" column when the table is already created, use the following SQL:
 
 ALTER TABLE CUST
@@ -59,6 +61,7 @@ ADD PRIMARY KEY (ID)
 ALTER TABLE CUST
 DROP PRIMARY KEY;
 
+
 -- The FOREIGN KEY constraint is used to prevent actions that would destroy links between tables.
 
 CREATE TABLE Orders (
@@ -75,10 +78,12 @@ CREATE TABLE Orders (
 ALTER TABLE Orders
 ADD FOREIGN KEY (CUSTID) REFERENCES CUST(CUSTID);
 
+
 -- To drop a FOREIGN KEY constraint, use the following SQL:
 
 ALTER TABLE Orders
 DROP FOREIGN KEY; 
+
 
 -- The CHECK constraint is used to limit the value range that can be placed in a column.
 
@@ -90,10 +95,12 @@ CREATE TABLE CUST (
     CHECK (Age>=18)
 ); 
 
+
 -- To create a CHECK constraint on the "Age" column when the table is already created, use the following SQL:
 
 ALTER TABLE CUST
 ADD CHECK (Age>=18);
+
 
 -- To drop a CHECK constraint, use the following SQL:
 
@@ -111,6 +118,7 @@ CREATE TABLE CUST (
     City varchar(255) DEFAULT 'HOSUR'
 ); 
 
+
 -- The DEFAULT constraint can also be used to insert system values, by using functions like GETDATE():
 
 CREATE TABLE Orders (
@@ -118,13 +126,51 @@ CREATE TABLE Orders (
     OrderNumber VARCHAR(255) DEFAULT GET DATA (),
     OrderDate DATE
 ); 
+
  
 -- To create a DEFAULT constraint on the "City" column when the table is already created, use the following SQL:
 
 ALTER TABLE CUST
 ALTER City SET DEFAULT 'HOSUR';
 
+
 -- To drop a DEFAULT constraint, use the following SQL:
 
 ALTER TABLE CUST
 ALTER City DROP DEFAULT;  
+
+
+-- The CREATE INDEX statement is used to create indexes in tables.
+-- SYNTAX
+
+/* 
+CREATE INDEX index_name
+ON table_name (column1, column2, ...); 
+*/
+
+CREATE INDEX idx_lastname
+ON CUST (LastName);
+
+
+-- Creates a unique index on a table. Duplicate values are not allowed:
+-- SYNTAX
+
+/*
+CREATE UNIQUE INDEX index_name
+ON table_name (column1, column2, ...);
+*/
+
+CREATE UNIQUE INDEX idx_lastname
+ON CUST (LastName);
+
+
+-- The DROP INDEX statement is used to delete an index in a table.
+-- SYNTAX
+
+/* 
+ALTER TABLE table_name
+DROP INDEX index_name;
+*/
+
+ALTER TABLE CUST
+DROP INDEX idx_lastname;
