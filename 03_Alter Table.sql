@@ -27,7 +27,7 @@ select * FROM STD;
 -- MODIFY COLUMN
 -- SYNTAX
 
-/* ALTER TABLE table_name
+/*  ALTER TABLE table_name
 ALTER COLUMN column_name datatype; */
 
 ALTER TABLE STD
